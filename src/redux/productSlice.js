@@ -17,8 +17,7 @@ const productSlice = createSlice({
     setReviewsForModel: (state, action) => {
       const { model, reviews } = action.payload;
       state.reviews = {
-        ...state.reviews,
-        [model]: [...(state.reviews[model] || []), ...reviews]
+        [model]: [ ...reviews]
       };
     },
     setPlainComments: (state, action) => {

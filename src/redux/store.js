@@ -1,7 +1,7 @@
 import { configureStore } from "@reduxjs/toolkit";
 import productReducer from "./productSlice";
 import {persistStore, persistReducer} from 'redux-persist';
-import storage from "redux-persist/lib/storage";
+import storageSession from "redux-persist/lib/storage/session";
 import expireTransform from 'redux-persist-transform-expire';
 
 
@@ -14,7 +14,7 @@ const expireConfig = expireTransform({
 
 const persistConfig = {
   key: 'root',
-  storage,
+  storage: storageSession,
   transforms:[expireConfig]
 };
 
@@ -24,6 +24,20 @@ export const store = configureStore({
   reducer: {
     product: persistedReducer,
   },
+  middleware: (getDefaultMiddleware) =>
+    getDefaultMiddleware({
+      serializableCheck: {
+        ignoredActions: [
+          "persist/FLUSH",
+          "persist/REHYDRATE",
+          "persist/PAUSE",
+          "persist/PERSIST",
+          "persist/PURGE",
+          "persist/REGISTER",
+        ],
+      },
+    }),
+  
 });
 
 export const persistor = persistStore(store);

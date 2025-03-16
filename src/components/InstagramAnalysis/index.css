@@ -1,0 +1,25 @@
+.insta-link-buttons{
+    display: flex;
+    align-items: center;
+    gap:40px;
+    margin-top: 10px;
+}
+.insta-bio-container{
+    margin-top: 10px;
+}
+.product-review-head1{
+    font-weight: 600;
+    font-size: 20px;
+    font-family: 'Poppins';
+}
+.carousel-image {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+.carousel-container {
+    position: relative;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
